@@ -1,0 +1,306 @@
+killcss {   
+STRINGIFY = "'" cssdom "'," 10
+
+cssdom = "float:" ( "left" | "right" | "auto" | "inherited" | num.number ) ";" 
+  | "margin:" length 32 length 32 length 32 length ";" 
+	| "bottom:" length ";" 
+	| "padding-left:"  size_px ";" 
+	| "border:" (( size_px " solid " color-keyword )| num.number )";" 
+	| "text-ident:" size_px ";"
+	| "layout-grid-char:" ( "auto" | size_px) ";"        
+	| "direction:" ( "ltr" | "rtl" | num.number ) ";"
+	| "layout-grid:" mode 32 type 32 size_px 32 size_px 32 size_px ";"
+        | "border-collapse:collapse;"
+        | "src:" ( "ff" | num.number ) ";"
+        | "position:" pos ";"
+        | "display:" ( "none" | dis) ";"
+        | "visibility:" ("hidden"|vis) ";"
+        | "vertical-align:"  (  "baseline" | "top" | "bottom" | "middle" | ( "sub" | "super" | "text-top" | "text-bottom" | length | percentage)) ";"
+        | "overflow:" (   ("visible" | "hidden"  |  "auto" |  "scroll") | "marquee"  ) ";"
+        | "speak-number:" ("digits" | "continuous" ) ";"
+        | "cue-before:" (  "url(...)" | "none") ";"
+        | "clip:" (  "auto" | "inherit" | "rect(" size_px "," size_px "," size_px "," size_px "," size_px ")") ";"
+        | "unicode-bidi:" (  "normal" | "embed" | "bidi-override" | "inherit" ) ";"
+        | "width:"  (  size_px | "intrinsic" | "auto" | "none"  | percentage ) ";"
+        | "clear:" (  "both" | "left" | "none" | "right" ) ";"
+        | "height:" (   "auto" | "intrinsic" | "min-intrinsic" ) ";"
+        | "line-height:" (  percentage  | size_px ) ";"
+        | ("max-height:" | "max-width:") ( "intrinsic" | "min-intrinsic" | "none" ) ";"
+        | ("min-height:" | "min-width:" ) ("intrinsic" | "min-intrinsic" ) ";"
+        | "opacity:" FLOAT ";"
+        | "vertical-align:" (     "baseline" | "bottom" | "middle" | "sub" |"super" | "text-bottom" | "text-top" |  "top" ) ";"
+        | "position:" (   "absolute" | "fixed" | "relative" | "static" ) ";"
+        | "z-index:" (   NUM ) ";"
+        | "zoom:" (   percentage | "normal"  | "reset" | FLOAT ) ";"
+        | "overflow-x:" (   "marquee" | ("auto" | "hidden" | "overlay" | "scroll" | "visible" ) ) ";"
+        | "overflow-y:" (   "marquee" | ("auto" | "hidden" | "overlay" | "scroll" | "visible" ) ) ";"
+        | "orphans:" NUM ";"
+        | "page-break-after:" (   "always" | "auto" | "avoid" | "left" | "right" ) ";"
+        | "page-break-before:" (   "always" | "auto" | "avoid" | "left" | "right" ) ";"
+        | "page-break-inside:" (   "auto" | "avoid" ) ";"
+        | "widows:" num.number ";"
+        | "letter-spacing:" (   NUM | "normal" ) ";"
+        | "text-align:" (  ( "auto" | "center" | "left" | "right" ) | ("center" | "end" | "justify" | "left" |"right" |"start")) ";"
+        | "text-decoration:" (  "line-through" | "none" | "overline" | "underline" ) ";"
+        | "text-ident:"  (   percentage | size_px ) ";"
+        | "text-overflow:" (   "clip"  | "ellipsis" ) ";"
+        | "text-shadow:" "blue" NUM NUM NUM ";"
+        | "text-transform:" (  "capitalize"  | "lowercase" | "uppercase" ) ";"
+        | "white-space:" (    "normal" | "nowrap" | "pre" | "pre-line" | "pre-wrap" ) ";"
+        | "word-break:" (  "break-all"  | "break-word" | "normal" ) ";"
+        | "word-spacing:" (  size_px | "normal" | "inherit" )";"
+        | "word-wrap:"  (   "break-word") ";"
+        | CONTENT
+        | COUNTER
+        | COUNTER_RESET
+        | COUNTER_INCREMENT
+        | LIST_STYLE_POSITION
+        | LIST_STYLE_IMAGE
+        | LSTYLETYPE
+        | LIST_STYLE
+        | QUOTES    
+        | "border-collapse:" (   "collapse" | "separate" | "inherit" ) ";" 
+        | "border-spacing:" (  (length length?) | "inherit" ) ";"
+        | "caption-side:" (   "top" | "bottom" | "inherit" ) ";"
+        | "empty-cells:"  (  "show" | "hide" | "inherit" ) ";"
+        | "behavior:" (num.number |  "url(#defaul#tVML)" | "url(#default#HTML)" | "url(#default#XML)" | "url(#default#SVG)" | "url(\'http://localhost/\')" | "url(#)" | "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" | "url(...)" | "url(" num.number ")" ) ";"
+        | "center-x:" (num.number) ";"
+        | "center-y:" (num.number) ";"
+        | "rotation:" (num.number "deg") ";"
+        | FILTER.FILTER       
+
+
+reqcss = ("offset" | "scroll" | "client" ) pl
+reqcssIE = "getComputedStyle()" | "currentStyle"
+
+pl= "Top" | "Left" | "Width" | "Height"
+
+size_px = ( num.number "px" | "-1000px" )
+
+size = ( num.number "pc" | "1000pc")
+
+length = ( num.number "cm" | "-1000cm" | "220000000cm" | "-220000000cm" | num.number )
+
+percentage = [0-9]{2} "%" | ( [0-9]{2} "%" | [0-9]+ "%" )
+
+mode = "both" | "none"  | "line"  | "char" 
+
+type = "strict" | "loose" | "fixed"
+
+pos = "absolute" | "relative" | "static" | "fixed" | "inherit"
+
+dis = "block" | "inline" | "inline-block" | "inline-table" | "list-item" | "table" | "table-caption" | "table-cell" | "table-column" | "table-column-group" | "table-footer-group" | "table-header-group" | "table-row" | "table-row-group" | "inherit"
+
+
+
+
+
+
+
+
+
+CONTENT = "content:" ( "normal" | "none" | STRING | URI | COUNTER | "attr(X)" | "open-quote" | "close-quote" | "no-open-quote" | "no-close-quote") ";"
+
+COUNTER = "counter(c)" | "counter(c, " LIST_STYLE_TYPE ")" | "counter(" num.number ")" | "counter(c," num.number ")" | "counter(" num.number "," num.number ")" | "counter(" (num.number "," )* ")" 
+
+
+QUOTES = "quotes:" ( ("\"'\""  32){4}  | ("\"\'\"" 32)+ | ("\">>\"" 32)+ | ("\"<<<<\"" 32)+ | "\" STRING \""  | "inherit"  | num.number) ";"
+
+COUNTER_RESET = "counter-reset:" ((IDENTIFIER 32 INTEGER? 32)+ | "none" | "inherit" | num.number )  ";"
+
+COUNTER_INCREMENT = "counter-increment:" ((IDENTIFIER 32 INTEGER? 32 )+ | "c" | "none" | "inherit" | num.number ) ";"
+
+
+IDENTIFIER = ("c")
+
+LIST_STYLE_TYPE =	"disc" | "circle" | "square" | "decimal" | "decimal-leading-zero" | "lower-roman" | "upper-roman" | "lower-greek" | "lower-latin" | "upper-latin" | "armenian" | "georgian" | "lower-alpha" | "upper-alpha" | "none" | "inherit" | num.number
+
+LSTYLETYPE = "list-style-type:" LIST_STYLE_TYPE | num.number ";"
+
+LIST_STYLE_IMAGE = "list-style-image:" (URI | "none" | "inherit" | num.number ) ";"
+
+
+LIST_STYLE_POSITION = "list-style-position:" ( "inside" | "outside" | "inherit" | num.number ) ";"
+
+LIST_STYLE = LIST_STYLE_POSITION  LSTYLETYPE | LIST_STYLE_IMAGE | num.number
+URI = "url(...)" | "url(\'http://localhost/\')" | "url(#foo)" | "url(" num.number ")"
+
+
+
+
+
+
+
+color-keyword = "aiceblue"
+| "antiquewhite"
+| "aqua"
+| "aquamarine"
+| "azure"
+| "beige"
+| "bisque"
+| "black"
+| "blanchedalmond"
+| "blue"
+| "blueviolet"
+| "brown"
+| "burlywood"
+| "cadetblue"
+| "chartreuse"
+| "chocolate"
+| "coral"
+| "cornflowerblue"
+| "cornsilk"
+| "crimson"
+| "cyan"
+| "darkblue"
+| "darkcyan"
+| "darkgoldenrod"
+| "darkgray"
+| "darkgreen"
+| "darkgrey"
+| "darkkhaki"
+| "darkmagenta"
+| "darkolivegreen"
+| "darkorange"
+| "darkorchid"
+| "darkred"
+| "darksalmon"
+| "darkseagreen"
+| "darkslateblue"
+| "darkslategray"
+| "darkslategrey"
+| "darkturquoise"
+| "darkviolet"
+| "deeppink"
+| "deepskyblue"
+| "dimgray"
+| "dimgrey"
+| "dodgerblue"
+| "firebrick"
+| "floralwhite"
+| "forestgreen"
+| "fuchsia"
+| "gainsboro" 	 
+| "gainsboro"
+| "ghostwhite"
+| "gold"
+| "goldenrod"
+| "gray"
+| "grey"
+| "green"
+| "greenyellow"
+| "honeydew"
+| "hotpink"
+| "indianred"
+| "indigo"
+| "ivory"
+| "khaki"
+| "lavender"
+| "lavenderblush"
+| "lawngreen"
+| "lemonchiffon"
+| "lightblue"
+| "lightcoral"
+| "lightcyan"
+| "lightgoldenrodyellow"
+| "lightgray"
+| "lightgreen"
+| "lightgrey"
+| "lightpink"
+| "lightsalmon"
+| "lightseagreen"
+| "lightskyblue"
+| "lightslategray"
+| "lightslategrey"
+| "lightsteelblue"
+| "lightyellow"
+| "lime"
+| "limegreen"
+| "linen"
+| "magenta"
+| "maroon"
+| "mediumaquamarine"
+| "mediumblue"
+| "mediumorchid"
+| "mediumpurple"
+| "mediumseagreen"
+| "mediumslateblue"
+| "mediumspringgreen"
+| "mediumturquoise"
+| "mediumvioletred"
+| "midnightblue"
+| "mintcream"
+| "mistyrose"
+| "moccasin"
+| "navajowhite"
+| "navy"
+| "oldlace"
+| "olive"
+| "olivedrab"
+| "orange"
+| "orangered"
+| "orchid"
+| "palegoldenrod"
+| "palegreen"
+| "paleturquoise"
+| "palevioletred"
+| "papayawhip"
+| "peachpuff"
+| "peru"
+| "pink"
+| "plum"
+| "powderblue"
+| "purple"
+| "red"
+| "rosybrown"
+| "royalblue"
+| "saddlebrown"
+| "salmon"
+| "sandybrown"
+| "seagreen"
+| "seashell"
+| "sienna"
+| "silver"
+| "skyblue"
+| "slateblue"
+| "slategray"
+| "slategrey"
+| "snow"
+| "springgreen"
+| "steelblue"
+| "tan"
+| "teal"
+| "thistle"
+| "tomato"
+| "turquoise"
+| "violet"
+| "wheat"
+| "white"
+| "whitesmoke"
+| "yellow"
+| "yellowgreen"
+| num.number
+
+
+vis = "visible" | "collapse" | "inherit" 
+
+
+
+NDICATOR = "caps-lock-indicator" |  "button" | "button-bevel" | "caret" | "checkbox" | "default-button" | "listbox" | "listitem" | "media-fullscreen-button" | "media-mute-button" | "media-play-button" | "media-seek-back-button" | "media-seek-forward-button" | "media-slider" | "media-sliderthumb" | "menulist" | "menulist-button" | "menulist-text" | "menulist-textfield" | "push-button" | "radio" | "searchfield" | "searchfield-cancel-button" | "searchfield-decoration" | "searchfield-results-button" | "searchfield-results-decoration" | "slider-horizontal" | "slider-vertical" | "sliderthumb-horizontal" | "sliderthumb-vertical" | "square-button" |  "textarea" | "textfield"
+
+
+
+NUM = "-1" | "1"  | num.number | "4" | "-4" | [0-9] | "66" | "666" | "66666666666666" | "12312312312321" | "436576" | "90191919" | "2323323" | "4096" |  ("11" | FLOAT)
+INTEGER = NUM
+
+STRING = "\'ASADSA\'" | "\'\u123123\'" | "\'\u00000\'" | "\'&nbsp;\'" | "\'&nbsp;&nbsp;&nbsp;\'" | "\u1111" | "\'\u1212\'" | "\'\u10400\'" | "\'{}|!!!!!!!!\'"
+
+FLOAT = "1.0" | "2.0" | "0.1" | "0.2" | [0-9]"."[0-9]+ | [0-9]+"."[0-9] | [0-9]?"."[0-9]*
+
+
+PSEUDO = ":active" | ":focus" | ":hover" | ":link"
+                | ":visited" | ":first-child" | ":lang"
+                | ":first-letter" | ":first-line" | ":before" | ":after" | num.number
+
+
+}
